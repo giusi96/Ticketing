@@ -96,12 +96,51 @@ namespace Ticketing.Client
             }
         }
 
-        public Ticket GetTicketById(int id)
+        public Ticket GetTicketByIdStp(int id) //richiamam la stored procedure creata in sql
         {
             using var ctx = new TicketContext();
             SqlParameter idParam = new SqlParameter("@Id", id);
             var result = ctx.Tickets.FromSqlRaw("exec stpGetTicketById @Id", idParam).AsEnumerable();
             return result.FirstOrDefault();
 ;        }
+
+        public Ticket GetTicketById(int id)
+        {
+            using var ctx = new TicketContext();
+            if (id > 0)
+                return ctx.Tickets.Find(id);
+
+            return null;           
+        }
+
+        public bool Edit(Ticket ticket)
+        {
+            using var ctx = new TicketContext();
+            bool saved = false;
+            do
+            {
+                try //Gestione della Concorrenza
+                {
+                    if (ticket == null)
+                        return false;
+
+                    Console.WriteLine("Smandrappa il ticket e poi premi enter");
+                    Console.ReadKey(); //simulazione della concorrenza
+
+                    ctx.Entry<Ticket>(ticket).State = EntityState.Modified;
+                    ctx.SaveChanges();
+
+                    saved = true;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    //..
+                    Console.WriteLine("Errore:" + ex.Message);
+                    saved= false;
+                }
+            } while (!saved);
+
+            return true;
+        }
     }
 }

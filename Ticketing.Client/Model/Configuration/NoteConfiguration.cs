@@ -12,6 +12,7 @@ namespace Ticketing.Client.Model.Configuration
         {
             builder.HasKey(n => n.Id);
             builder.Property(n => n.Comment).HasMaxLength(1000).IsRequired();
+            builder.Property(n => n.RowVersion).IsRowVersion();
 
             //builder.HasOne(n => n.Ticket).WithMany(t => t.Notes); //questa cosa è la stessa che ho scritta in ticketconfiguration: una nota è associata ad un ticket, un ticket può avere diverse note. 
             //                                                        //si tratta di una relazione uno a molti
