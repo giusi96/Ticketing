@@ -20,7 +20,7 @@ namespace Ticketing.Client.Context
             string connString= Config.GetConnectionString("TicketDb");
             //oppure
             //string connString = config.GetSection("ConnectionStrings")["TicketDb"];
-
+            optionBuilder.UseLazyLoadingProxies(); //Lazy Loading
             optionBuilder.UseSqlServer(connString);
         }
 

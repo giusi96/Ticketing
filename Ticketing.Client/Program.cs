@@ -21,6 +21,7 @@ namespace Ticketing.Client
                     case "q":
                         quit = true;
                         break;
+
                     case "a":
                         //ADD
                         Ticket ticket = new Ticket();
@@ -35,28 +36,54 @@ namespace Ticketing.Client
                         var result= dataService.Add(ticket);
                         Console.WriteLine($"Operation" + (result ? "completed" : "Failed!"));
                         break;
+
+                    case "n":
+                        //ADD NOTE
+                        var ticketId = GetData("Ticket ID");
+                        int.TryParse(ticketId, out int tId);
+                        var comment = GetData("Cooment?");
+                        Note newNote = new Note
+                        {
+                            TicketId = tId,
+                            Comment = comment
+                        };
+                        var noteResult = dataService.Addnote(newNote);
+                        Console.WriteLine($"Operation" + (noteResult ? "completed" : "Failed!"));
+                        break;
+
                     case "L":
                         //list
                         Console.WriteLine("---TICKET LIST---");
-                        foreach (var t in dataService.List())
+                        foreach (var t in dataService.ListEager())
                         {
                             Console.WriteLine($"[{t.Id}] {t.Title}");
+                            foreach (var n in t.Notes)
+                            {
+                                Console.WriteLine($"\t{n.Comment}");
+                            }
                         }
                         Console.WriteLine("----------------------");
 
-                        dataService.List();
+                        dataService.ListEager();
+                        break;
+                    case "x":
+                        var ticketId2 = GetData("Ticket ID");
+                        int.TryParse(ticketId2, out int tId2);
+                        var ticket2 = dataService.GetTicketById(tId2);
+                        Console.WriteLine(ticket2!=null ? ticket2.Description: "");
                         break;
                     case "e":
                         //EDIT
                         break;
+
                     case "d":
                         //Delete
                         break;
+
                     default:
                         Console.WriteLine("Comando sconosciuto ");
                         break;
                 }
-
             } while (!quit);
 
             Console.WriteLine("---Bye Bye ---");
