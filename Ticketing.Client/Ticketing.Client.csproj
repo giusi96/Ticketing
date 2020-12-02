@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ticketing.Helpers\Ticketing.Helpers.csproj" />
+    <ProjectReference Include="..\TicketingCore\TicketingCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

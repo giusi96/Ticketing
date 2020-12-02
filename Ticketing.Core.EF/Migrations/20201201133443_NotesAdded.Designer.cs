@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Ticketing.Client.Context;
+using Ticketing.Core.EF.Context;
 
 namespace Ticketing.Client.Migrations
 {
     [DbContext(typeof(TicketContext))]
-    [Migration("20201201113645_TicketRequestorAdded")]
-    partial class TicketRequestorAdded
+    [Migration("20201201133443_NotesAdded")]
+    partial class NotesAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,28 @@ namespace Ticketing.Client.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("Ticketing.Client.Model.Note", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("Notes");
+                });
 
             modelBuilder.Entity("Ticketing.Client.Model.Ticket", b =>
                 {
@@ -58,6 +80,23 @@ namespace Ticketing.Client.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("Ticketing.Client.Model.Note", b =>
+                {
+                    b.HasOne("Ticketing.Client.Model.Ticket", "Ticket")
+                        .WithMany("Notes")
+                        .HasForeignKey("TicketId")
+                        .HasConstraintName("FK_Ticket_Notes")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    //b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("Ticketing.Client.Model.Ticket", b =>
+                {
+                    //b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }

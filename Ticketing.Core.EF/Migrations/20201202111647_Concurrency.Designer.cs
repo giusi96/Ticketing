@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Ticketing.Client.Context;
+using Ticketing.Core.EF.Context;
 
 namespace Ticketing.Client.Migrations
 {
     [DbContext(typeof(TicketContext))]
-    [Migration("20201201133443_NotesAdded")]
-    partial class NotesAdded
+    [Migration("20201202111647_Concurrency")]
+    partial class Concurrency
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,11 @@ namespace Ticketing.Client.Migrations
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
@@ -69,6 +74,11 @@ namespace Ticketing.Client.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
@@ -91,12 +101,12 @@ namespace Ticketing.Client.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ticket");
+                    //b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("Ticketing.Client.Model.Ticket", b =>
                 {
-                    b.Navigation("Notes");
+                    //b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }

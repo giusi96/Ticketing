@@ -7,8 +7,9 @@ using System.Text;
 using Ticketing.Client.Model;
 using Ticketing.Client.Model.Configuration;
 using Ticketing.Helpers;
+using TicketingCore.Model;
 
-namespace Ticketing.Client.Context
+namespace Ticketing.Core.EF.Context
 {
     public sealed class TicketContext: DbContext
     {

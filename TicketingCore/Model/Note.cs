@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ticketing.Client.Model
+namespace TicketingCore.Model
 {
     public class Note
     {

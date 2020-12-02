@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Ticketing.Client.Context;
+using Ticketing.Core.EF.Context;
 
 namespace Ticketing.Client.Migrations
 {
@@ -99,12 +99,12 @@ namespace Ticketing.Client.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ticket");
+                    //b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("Ticketing.Client.Model.Ticket", b =>
                 {
-                    b.Navigation("Notes");
+                    //b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }
