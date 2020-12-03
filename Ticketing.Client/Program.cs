@@ -19,6 +19,12 @@ namespace Ticketing.Client
                 Console.WriteLine();
                 switch (command)
                 {
+                    case "h":
+                        Console.WriteLine("Help");
+                        Console.WriteLine("q: quit | a: add ticket");
+                        Console.WriteLine("n: add note | l: list ticket");
+                        Console.WriteLine("e: edit ticket");
+                        break;
                     case "q":
                         quit = true;
                         break;
@@ -48,36 +54,19 @@ namespace Ticketing.Client
                             TicketId = tId,
                             Comment = comment
                         };
-                        var noteResult = dataService.Addnote(newNote);
+                        var noteResult = dataService.AddNote(newNote);
                         Console.WriteLine($"Operation" + (noteResult ? "completed" : "Failed!"));
                         break;
 
                     case "l":
-                        //list->Eager loading
-                        Console.WriteLine("---TICKET LIST Eager---");
-                        foreach (var t in dataService.ListEager())
+                        Console.WriteLine("-- TICKET LIST (EAGER) --");
+                        foreach (var t in dataService.List())
                         {
                             Console.WriteLine($"[{t.Id}] {t.Title}");
                             foreach (var n in t.Notes)
-                            {
                                 Console.WriteLine($"\t{n.Comment}");
-                            }
                         }
-                        Console.WriteLine("----------------------");
-
-                        dataService.ListEager();
-                        break;
-
-                    case "x":
-                        var ticketId2 = GetData("Ticket ID");
-                        int.TryParse(ticketId2, out int tId2);
-                        var ticket2 = dataService.GetTicketByIdStp(tId2);
-                        Console.WriteLine(ticket2!=null ? ticket2.Description: "");
-                        break;
-
-                    case "z":
-                        //List->Lazy loading
-                        dataService.ListLazy();
+                        Console.WriteLine("-----------------");
                         break;
 
                     case "e":

@@ -10,7 +10,7 @@ namespace TicketingCore.Repository
                                                         //repository.Get()-> mi resituisce tutti gli oggetti
                                                         //repository.Get(t=>y.Name == 'Roberto')-> mi restituisce tutti gli oggetti la cui proprità nome è uguale a roberto
                                                         //null è il valore di default
-        T GetById(int id);
+        T GetByID(int id);
         bool Add(T item);
         bool Update(T item);
         bool DeleteById(int id);
