@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.Core.Mock", "Tick
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.Core.ADONET", "Ticketing.Core.ADONET\Ticketing.Core.ADONET.csproj", "{C0041178-E3D9-443D-B453-9442FA8ACDB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.API", "Ticketing.API\Ticketing.API.csproj", "{134760ED-DE91-48FF-883C-6393B3312BCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{C0041178-E3D9-443D-B453-9442FA8ACDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0041178-E3D9-443D-B453-9442FA8ACDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0041178-E3D9-443D-B453-9442FA8ACDB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134760ED-DE91-48FF-883C-6393B3312BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134760ED-DE91-48FF-883C-6393B3312BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134760ED-DE91-48FF-883C-6393B3312BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134760ED-DE91-48FF-883C-6393B3312BCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

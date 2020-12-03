@@ -21,7 +21,7 @@ namespace Ticketing.Core.EF.Context
             string connString= Config.GetConnectionString("TicketDb");
             //oppure
             //string connString = config.GetSection("ConnectionStrings")["TicketDb"];
-            optionBuilder.UseLazyLoadingProxies(); //Lazy Loading
+            //optionBuilder.UseLazyLoadingProxies(); //Lazy Loading -> commento perchè wb non va
             optionBuilder.UseSqlServer(connString);
         }
 

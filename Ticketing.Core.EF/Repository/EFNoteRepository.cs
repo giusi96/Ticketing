@@ -28,6 +28,11 @@ namespace Ticketing.Core.EF.Repository
             throw new NotImplementedException();
         }
 
+        public Note GetByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(Note item)
         {
             throw new NotImplementedException();

@@ -39,6 +39,11 @@ namespace Ticketing.Core.EF.Repository
             throw new NotImplementedException();
         }
 
+        public Ticket GetByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Ticket GetTicketByTitle(string title) //metodo proprio
         {
             throw new NotImplementedException();

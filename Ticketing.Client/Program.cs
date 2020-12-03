@@ -1,5 +1,6 @@
 ﻿using System;
 using Ticketing.Client.Model;
+using TicketingCore.BL;
 using TicketingCore.Model;
 
 namespace Ticketing.Client
